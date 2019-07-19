@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import axios from 'axios'
 import ImgElement from './ImgElement.js'
 import custom from './Custom.js'
+import '../scss/components/article-detail.scss'
+
 
 class ArticleDetail extends React.Component{
   state = {
@@ -20,14 +22,12 @@ class ArticleDetail extends React.Component{
   }
   componentDidMount(){
     custom.helloVaske();
-    axios.get(`https://api.lesverygoods.fr/pages/posts/${this.getId()}`)
+    axios.get(`http://www.somaku.com/posts/${this.getId()}`)
     .then(res => {
-        const post = res.data.data;
+        const post = res.data;
 
         this.setState({
            post:post,
-           img:post.post_image.url,
-           content:post.content
         });
       })
   }
@@ -43,23 +43,15 @@ class ArticleDetail extends React.Component{
       padding:"0 30px"
 
     }
-    var halfContainer = {
-      width:"50%",
-      display:"inline-block",
-      verticalAlign:"top",
-      color:"#333",
-      textAlign:"left"
-    }
     return (
-      <div style={containerStyle}>
-        <h1 style={hStyle}>{this.state.post.title} </h1>
-        <div style={halfContainer}>
-          <ImgElement url={this.state.img} res='550x400' />
+      <div class='container main'>
+        <h1>{this.state.post.title} </h1>
+        <br />
+        <div class='article-half'>
+          <img src="http://placehold.it/550x400" />
         </div>
-        <div style={halfContainer}>
-          <p dangerouslySetInnerHTML={this.createMarkup(this.state.content.intro)}></p>
-          <p dangerouslySetInnerHTML={this.createMarkup(this.state.content.intro2)}></p>
-          <p dangerouslySetInnerHTML={this.createMarkup(this.state.content.guide)}></p>
+        <div class='article-half' >
+          <p>{this.state.post.body}</p>
         </div>
       </div>
     )

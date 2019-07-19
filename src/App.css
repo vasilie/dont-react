@@ -2,15 +2,24 @@
   text-align: center;
   background-color: white;
   color: black !important;
+  padding-top:50px;
+
 }
 * {
   padding:0;
   margin:0;
+  box-sizing: border-box;
 }
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
+  animation: App-logo-spin infinite 10s linear;
   height: 40vmin;
   pointer-events: none;
+  position: relative;
+  /* width: 60px; */
+  height: 50px;
+  left:0;
+  /* position: absolute; */
+  float: left;
 }
 
 .App-header {

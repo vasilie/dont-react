@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import LatestArticles from '../components/LatestArticles.js'
+import Article from '../components/Article.js'
 import axios from 'axios'
 
 class Main extends React.Component {
@@ -12,9 +13,9 @@ class Main extends React.Component {
     return "vasko";
   }
   componentDidMount(){
-    axios.get(`https://api.lesverygoods.fr/pages/posts`)
+    axios.get(`http://www.somaku.com/posts`)
     .then(res => {
-        const posts = res.data.data;
+        const posts = res.data;
         console.log(posts);
         this.setState({ posts:posts });
       })
@@ -26,10 +27,17 @@ class Main extends React.Component {
       margin:"0 auto",
       padding:"0 30px"
     }
+    var mainHeading = {
+      color: "#333",
+      textAlign: "left",
+      padding: "1%",
+      marginTop: "30px"
+      
+    }
     return (
-      <div style={containerStyle} className="container">
-        The Main Container mothafuckers
-        { this.state.posts.map((post, index) => (<LatestArticles key={index} post={post} />)) }
+      <div style={containerStyle} className="container main">
+        <h1 style={mainHeading} >Don't React</h1>
+        { this.state.posts.map((item, index) => (<Article key={index} item={item} />)) }
       </div>
     )
   }
